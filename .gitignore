@@ -1,0 +1,6 @@
+.idea
+venv
+data
+__pycache__
+Users/__pycache__
+EmphaSoft/__pycache__

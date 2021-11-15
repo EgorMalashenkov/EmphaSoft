@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=Emphasoft
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  lint:
+    build: .
+    command: bash -c "pip install -r lint-requirements.txt && flake8 --max-line-length 120 --exclude migrations,venv,manage.py"
+    volumes:
+      - .:/code
+  test:
+    build: .
+    command: python manage.py test
+    volumes:
+      - .:/code
