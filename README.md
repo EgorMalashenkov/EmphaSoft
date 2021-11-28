@@ -7,6 +7,3 @@
 Запуск линтера:
     
     docker-compose up lint
-Запуск тестов:
-    
-    docker-compose up test
