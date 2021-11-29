@@ -4,9 +4,6 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from .serializers import UserModelSerializer
 
 
-# if the user wants to update/delete his data, then we needs to use djoser endpoints
-
-
 class UserModelViewSet(viewsets.ModelViewSet):
     serializer_class = UserModelSerializer
     queryset = User.objects.filter(is_staff=False)
